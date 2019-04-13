@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block content %}
+{{ book.name }}
+<a href="{{ book.link }}">{{ book.name }}</a><br />
+{{ book.page_count }} pages<br /><br />
+
+Update your progress:<br />
+{{ progress_form }}
+{% endblock %}
