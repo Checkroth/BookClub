@@ -1,10 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-{{ book.name }}
-<a href="{{ book.link }}">{{ book.name }}</a><br />
-{{ book.page_count }} pages<br /><br />
-
-Update your progress:<br />
-{{ progress_form }}
+<ul class="flex-container col">
+	<li class="flex-item">
+		<a href="{{ book.link }}">{{ book.name }}</a>
+	</li>
+	<li class="flex-item">
+		{{ book.page_count }} pages
+	</li>
+	<li class="flex-item">
+		Update your progress:<br />
+		<form method="post" action="{% url 'books:update_book_progress' book.pk %}">
+			{% csrf_token %}
+			<ul class="form-wrapper">
+				<li class="form-row">
+					<label>{{ progress_form.pages_read.label }}:</label>
+					{{ progress_form.pages_read }}
+					<button type="sbumit">Update Progress</button>
+				</li>
+			</ul>
+		</form>
+	</li>
+</ul>
 {% endblock %}

@@ -17,6 +17,10 @@
 
 a {
 	text-decoration: none;
+	color: forestgreen;
+}
+
+.book a {
 	color: white;
 }
 
@@ -92,21 +96,27 @@ a {
   justify-content: center;
 }
 
+.flex-container.col {
+	-webkit-flex-direction: column;
+}
+
 .flex-item {
-	background: darkgreen;
 	padding: 5px;
-	width: 300px;
 	height: auto;
 	margin-top: 10px;
 	margin-left: 10px;
-  
 	line-height: 30px;
-	color: white;
-	font-size: 1em;
 	text-align: center;
+	font-size: 1em;
 }
 
-.flex-item a {
+.flex-item.book {
+	background: darkgreen;	
+	width: 300px;
+	color: white;
+}
+
+.flex-item.book a {
 	text-decoration: none;
 	display: block;
 	padding: 1em;
@@ -114,6 +124,51 @@ a {
 	color: white;
 }
 
-.flex-item a:hover {
+.flex-item.book a:hover {
 	background: forestgreen;
+}
+
+
+/* forms */
+.form-wrapper {
+	list-style-type: none;
+	padding: 0;
+	width: 50%;
+	margin: auto;
+}
+
+.form-row {
+	display: flex;
+	justify-content: center;
+	padding: .4em;
+	margin: 0;
+}
+
+.form-row > input {
+    padding: .5em;
+	margin: 0 1em;
+}
+
+.form-row > button {
+	background: forestgreen;
+	max-width: 10em;
+	color: white;
+	border: 0;
+	padding: 1em;
+	margin-top: 0;
+	flex: 3;
+}
+
+.form-row > button:hover {
+	background: darkgreen;
+	cursor: pointer;
+}
+
+.form-row > label {
+	padding-top: .5em;
+	flex: 1;
+}
+
+.form-row > input {
+	flex: 2 50%;
 }

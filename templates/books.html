@@ -4,7 +4,7 @@
 
 <ul class="flex-container">
 	{% for book in books %}
-	<li class="flex-item">
+	<li class="flex-item book">
 		<a href="{% url 'books:view_book' book.pk %}">
 			<span class="title">{{ book.name }}</span><br />
 			{{ book.num_readers }} readers<br />

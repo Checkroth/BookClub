@@ -9,7 +9,7 @@ from .forms import BookForm, BookProgressForm
 def update_book_progress(request, pk):
     if request.method != 'POST':
         return HttpResponseNotAllowed()
-    return redirect('books:list_books')
+    return redirect('books:view_book', pk=pk)
 
 
 def view_book(request, pk):

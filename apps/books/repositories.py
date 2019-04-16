@@ -33,7 +33,7 @@ class BookRepository:
 
     def get_books_by_number_of_readers(self):
         books = self.get_books()
-        return books.order_by('user_progresses')
+        return books.order_by('-user_progresses')
 
 
 class BookProgressRepository:
