@@ -1,39 +1,34 @@
-from django.http import HttpResponseNotAllowed, HttpResponseNotFound
-from django.shortcuts import render, redirect
+from django.http import HttpResponseNotFound
+from django.shortcuts import render, redirect, get_object_or_404
 
 from apps import api
 
 from .forms import BookForm, BookProgressForm
-
-
-def update_book_progress(request, pk):
-    if request.method != 'POST':
-        return HttpResponseNotAllowed()
-
-    form = BookProgressForm({'user': request.user.pk,
-                             'book': pk,
-                             **request.POST})
-    import pdb; pdb.set_trace();
-    if not form.is_valid():
-        # add form error messages here
-        print(form.errors)
-    else:
-        # add success message here
-        print('success')
-        form.save()
-    return redirect('books:view_book', pk=pk)
+from .models import Book
 
 
 def view_book(request, pk):
-    book_repo = api.get_book_repo()
     book_app = api.get_book_app()
-    book = book_repo.get_book(pk)
+    book = get_object_or_404(Book, pk=pk)
     if not book:
         return HttpResponseNotFound()
 
+    progress_repo = api.get_book_progress_repo()
+    existing_progress = progress_repo.get_existing_progress(user_id=request.user.pk,
+                                                            book_id=pk)
+    if request.method == 'POST':
+        progress_form = BookProgressForm({'user': request.user.pk,
+                                          'book': pk,
+                                          'pages_read': request.POST['pages_read']},
+                                         instance=existing_progress,
+                                         )
+        if progress_form.is_valid():
+            progress_form.save()
+    else:
+        progress_form = BookProgressForm(
+            {'pages_read': existing_progress.pages_read if existing_progress else 0})
+
     readers = book_app.get_all_progresses(pk)
-    progress_form = BookProgressForm({'user': request.user.pk,
-                                      'book': pk})
     return render(request, 'book.html', {'book': book,
                                          'progress_form': progress_form,
                                          'readers': readers})
@@ -61,8 +56,8 @@ def add_book(request):
     else:
         form = BookForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('books:view_book', pk=form.pk)
+            book = form.save()
+            return redirect('books:view_book', pk=book.pk)
 
     return render(request,
                   'add_book.html',

@@ -55,7 +55,7 @@ a {
   padding-left: 0;
 }
 
-.navigation .logout {
+.navigation .account {
 	margin-left: auto;
 }
 
@@ -110,6 +110,7 @@ a {
 	font-size: 1em;
 }
 
+/* book lists */
 .flex-item.book {
 	background: darkgreen;	
 	width: 300px;
@@ -130,16 +131,17 @@ a {
 }
 
 
+/* progress tags */
 .flex-item.progress-tag {
 	background: darkgreen;
-	width: 210px;
+	min-width: 150px;
 	height: 40px;
 	color: white;
 	border: forestgreen;
 	border-style: solid;
 	border-width: .1em;
 	line-height: 1.9em;
-	padding: 0px;
+	padding: 0 3px 0 0;
 }
 
 .flex-item.progress-tag > span.progress-fill {
@@ -149,6 +151,7 @@ a {
   position: relative;
   overflow: visible;
   white-space: nowrap;
+  padding-left: 3px;
 }
 
 
@@ -194,4 +197,15 @@ a {
 
 .form-row > input {
 	flex: 2 50%;
+}
+
+.form-errors {
+	background-color: #F8D6D9;
+	color: #712228;
+	padding: .5em;
+	border-radius: 1em;
+}
+
+.form-errors ul {
+	list-style: none;
 }

@@ -1,1 +1,41 @@
 {% extends "base.html" %}
+
+
+{% block content %}
+<form method="post" url="{% url 'books:add_book' %}">
+	{% csrf_token %}
+	<ul class="form-wrapper">
+		{% if book_form.errors.name %}
+		<li class="form-row form-errors">
+			{{ book_form.errors.name }}
+		</li>
+		{% endif %}
+		<li class="form-row">
+			<label>{{ book_form.name.label }}</label>
+			{{ book_form.name }}
+		</li>
+		{% if book_form.errors.link %}
+		<li class="form_row form-errors">
+			{{ book_form.errors.link }}
+		</li>
+		{% endif %}
+		<li class="form-row">
+			<label>{{ book_form.link.label }}</label>
+			{{ book_form.link }}
+		</li>
+		{% if book_form.errors.page_count %}
+		<li class="form_row form-errors">
+			{{ book_form.errors.page_count }}
+		</li>
+		{% endif %}
+		<li class="form-row">
+			<label>{{ book_form.page_count.label }}</label>
+			{{ book_form.page_count }}
+		</li>
+		<li class="form-row">
+			<button type="submit">Add Book</button>
+		</li>
+	</ul>
+</form>
+
+{% endblock %}

@@ -9,3 +9,7 @@ def get_book_app():
 
 def get_book_repo():
     return BookRepository()
+
+
+def get_book_progress_repo():
+    return BookProgressRepository()

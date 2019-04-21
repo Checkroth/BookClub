@@ -4,23 +4,23 @@
 
 {{ form.errors }}
 
-<div class='form'>
-	<form method="post" action="{% url 'login' %}">
-		{% csrf_token %}
-		<table>
-			<tr>
-				<td>{{ form.username.label_tag }}</td>
-				<td>{{ form.username }}</td>
-			</tr>
-			<tr>
-				<td>{{ form.password.label_tag }}</td>
-				<td>{{ form.password }}</td>
-			</tr>
-		</table>
-
-		<input type="submit" value="login">
-		<input type="hidden" name="next" value="{{ next }}">
-	</form>
-</div>
+<form method="post" action="{% url 'login' %}">
+	{% csrf_token %}
+	<ul class="form-wrapper">
+		<li class="form-row">
+			{{ form.username.label_tag }}
+			{{ form.username }}
+		</li>
+		<li class="form-row">
+			{{ form.password.label_tag }}
+			{{ form.password }}
+		</li>
+		<li class="form-row">
+			<!-- TODO:: redirect to index? implement profile page? -->
+			<button type="submit">Login</button>
+		</li>
+	</ul>
+	<input type="hidden" name="next" value="{{ next }}">
+</form>
 
 {% endblock %}

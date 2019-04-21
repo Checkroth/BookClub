@@ -12,9 +12,15 @@
 	</li>
 	<li class="flex-item">
 		Update your progress:<br />
-		<form method="post" action="{% url 'books:update_book_progress' book.pk %}">
+		<form method="post" action="{% url 'books:view_book' book.pk %}">
 			{% csrf_token %}
 			<ul class="form-wrapper">
+				{% if progress_form.errors.pages_read %}
+				<br />
+				<li class="form-row form-errors">
+					{{ progress_form.errors.pages_read }}
+				</li>
+				{% endif %}
 				<li class="form-row">
 					<label>{{ progress_form.pages_read.label }}:</label>
 					{{ progress_form.pages_read }}
@@ -28,7 +34,9 @@
 			{% for reader in readers %}
 			<li class="flex-item progress-tag">
 				<span class='progress-fill' style="width: {{ reader.pages_read|div:book.page_count }}%;">
-					{{ reader.username }}: {{ reader.pages_read }} pages
+					<span class="progress-text">
+						{{ reader.username }}: {{ reader.pages_read }} pages
+					</span>
 				</span>
 			</li>
 			{% endfor %}

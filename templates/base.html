@@ -16,7 +16,9 @@
 		<li><a href="{% url 'books:list_books' %}">Books</a></li>
 		<li><a href="{% url 'books:add_book' %}">Add Book</a></li>
 		{% if request.user.is_authenticated %}
-		<li class="logout"><a href="{% url 'logout' %}">Logout</a></li>
+		<li class="account"><a href="{% url 'logout' %}">Logout</a></li>
+		{% else %}
+		<li class="account"><a href="{% url 'login' %}">Login</a></li>
 		{% endif %}
 	</ul>
 	<div class="content-body container">

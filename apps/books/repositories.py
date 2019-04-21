@@ -46,3 +46,10 @@ class BookProgressRepository:
         progresses = progresses.order_by('-pages_read')
         progresses.prefetch_related('user')
         return progresses
+
+    def get_existing_progress(self, user_id, book_id) -> BookProgress:
+        try:
+            return self.model_book_progress.objects.get(user_id=user_id,
+                                                        book_id=book_id)
+        except self.model_book_progress.DoesNotExist:
+            return None
