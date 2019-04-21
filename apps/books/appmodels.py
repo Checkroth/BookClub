@@ -29,7 +29,7 @@ class BookApplication:
             yield book_data_from_book(book, num_readers=book.number_of_readers)
 
     def get_all_progresses(self, book_id: int) -> Iterator[ProgressData]:
-        all_progresses = self.book_progress_repo.get_all_book_progresses_by_pages_read(
+        all_progresses = self.book_progress_repo.get_all_progresses_by_pages_read(
             book_id)
         for progress in all_progresses:
             yield progress_data_from_progress(progress)

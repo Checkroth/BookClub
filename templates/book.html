@@ -1,5 +1,7 @@
 {% extends "base.html" %}
 
+{% load book_tags %}
+
 {% block content %}
 <ul class="flex-container col">
 	<li class="flex-item">
@@ -16,10 +18,20 @@
 				<li class="form-row">
 					<label>{{ progress_form.pages_read.label }}:</label>
 					{{ progress_form.pages_read }}
-					<button type="sbumit">Update Progress</button>
+					<button type="submit">Update Progress</button>
 				</li>
 			</ul>
 		</form>
 	</li>
+	<li class="flex-item">
+		<ul class="flex-container">
+			{% for reader in readers %}
+			<li class="flex-item progress-tag">
+				<span class='progress-fill' style="width: {{ reader.pages_read|div:book.page_count }}%;">
+					{{ reader.username }}: {{ reader.pages_read }} pages
+				</span>
+			</li>
+			{% endfor %}
+		</ul>
 </ul>
 {% endblock %}

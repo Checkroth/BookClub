@@ -12,5 +12,4 @@ class BookForm(forms.ModelForm):
 class BookProgressForm(forms.ModelForm):
     class Meta:
         model = BookProgress
-        fields = ['user', 'pages_read']
-        widgets = {'user': forms.HiddenInput()}
+        fields = ['user', 'book', 'pages_read']

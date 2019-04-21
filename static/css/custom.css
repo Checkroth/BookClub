@@ -1,7 +1,7 @@
 /* Navigation */
 .navigation {
   list-style: none;
-  margin: 0; 
+  margin: 0 0 1em 0;
   
   background: forestgreen;
   
@@ -103,9 +103,9 @@ a {
 .flex-item {
 	padding: 5px;
 	height: auto;
-	margin-top: 10px;
+	margin-top: 5px;
 	margin-left: 10px;
-	line-height: 30px;
+	line-height: 20px;
 	text-align: center;
 	font-size: 1em;
 }
@@ -114,6 +114,7 @@ a {
 	background: darkgreen;	
 	width: 300px;
 	color: white;
+	line-height: 30px;
 }
 
 .flex-item.book a {
@@ -126,6 +127,28 @@ a {
 
 .flex-item.book a:hover {
 	background: forestgreen;
+}
+
+
+.flex-item.progress-tag {
+	background: darkgreen;
+	width: 210px;
+	height: 40px;
+	color: white;
+	border: forestgreen;
+	border-style: solid;
+	border-width: .1em;
+	line-height: 1.9em;
+	padding: 0px;
+}
+
+.flex-item.progress-tag > span.progress-fill {
+  display: block;
+  height: 100%;
+  background-color: forestgreen;
+  position: relative;
+  overflow: visible;
+  white-space: nowrap;
 }
 
 

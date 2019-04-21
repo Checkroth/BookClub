@@ -9,6 +9,18 @@ from .forms import BookForm, BookProgressForm
 def update_book_progress(request, pk):
     if request.method != 'POST':
         return HttpResponseNotAllowed()
+
+    form = BookProgressForm({'user': request.user.pk,
+                             'book': pk,
+                             **request.POST})
+    import pdb; pdb.set_trace();
+    if not form.is_valid():
+        # add form error messages here
+        print(form.errors)
+    else:
+        # add success message here
+        print('success')
+        form.save()
     return redirect('books:view_book', pk=pk)
 
 
