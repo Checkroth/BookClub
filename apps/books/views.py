@@ -14,14 +14,17 @@ def update_book_progress(request, pk):
 
 def view_book(request, pk):
     book_repo = api.get_book_repo()
+    book_app = api.get_book_app()
     book = book_repo.get_book(pk)
     if not book:
         return HttpResponseNotFound()
 
+    readers = book_app.get_all_progresses(pk)
     progress_form = BookProgressForm({'user': request.user.pk,
                                       'book': pk})
     return render(request, 'book.html', {'book': book,
-                                         'progress_form': progress_form})
+                                         'progress_form': progress_form,
+                                         'readers': readers})
 
 
 def list_books(request):

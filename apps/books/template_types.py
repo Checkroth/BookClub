@@ -22,3 +22,14 @@ class BookData:
     link: str
     page_count: int
     num_readers: int
+
+
+def progress_data_from_progress(progress):
+    return ProgressData(username=progress.user.username,
+                        pages_read=progress.pages_read)
+
+
+@dataclass
+class ProgressData:
+    username: str
+    pages_read: int

@@ -40,3 +40,9 @@ class BookProgressRepository:
     def __init__(self,
                  model_book_progress=BookProgress):
         self.model_book_progress = model_book_progress
+
+    def get_all_progresses_by_pages_read(self, book_id):
+        progresses = self.model_book_progress.objects.filter(book_id=book_id)
+        progresses = progresses.order_by('-pages_read')
+        progresses.fetch_related('user')
+        return progresses
