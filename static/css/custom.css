@@ -209,3 +209,26 @@ a {
 .form-errors ul {
 	list-style: none;
 }
+
+/* messages */
+ul.messages {
+	list-style: none;
+	margin: 0 .8em 0 0;
+	-webkit-padding-start: 0;
+}
+
+ul.messages > li {
+	width: 100%;
+	text-align: center;
+	padding: .4em;
+	display: block;
+	margin-block-start: 0;
+	border-radius: 1em;
+}
+
+ul.messages > .success  {
+	background: green;
+	color: white;
+}
+
+

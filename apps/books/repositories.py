@@ -31,10 +31,6 @@ class BookRepository:
         except self.model_book.DoesNotExist:
             return None
 
-    def get_books_by_number_of_readers(self):
-        books = self.get_books()
-        return books.order_by('-user_progresses')
-
 
 class BookProgressRepository:
     def __init__(self,

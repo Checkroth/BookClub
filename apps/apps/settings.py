@@ -130,3 +130,5 @@ STATIC_ROOT = str(BASE_DIR / '_static')
 # Auth settings
 # Redirect to index after logout
 LOGOUT_REDIRECT_URL = '/'
+# TODO:: actually implement accounts/profile
+LOGIN_REDIRECT_URL = '/'

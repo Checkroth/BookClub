@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{{ form.errors }}
+
+<form method="post" action="{% url 'signup' %}">
+	{% csrf_token %}
+	<ul class="form-wrapper">
+		<li class="form-row">
+			{{ form.username.label_tag}}
+			{{ form.username }}
+		</li>
+		<li class="form-row">
+			{{ form.password1.label_tag }}
+			{{ form.password1 }}
+		</li>
+		<li class="form-row">
+			{{ form.password2.label_tag }}
+			{{ form.password2 }}
+		</li>
+		<li class="form-row">
+			<button type="submit">Login</button>
+		</li>
+</form>
+
+{% endblock %}

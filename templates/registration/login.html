@@ -19,6 +19,9 @@
 			<!-- TODO:: redirect to index? implement profile page? -->
 			<button type="submit">Login</button>
 		</li>
+		<li class="form-row">
+			<a href="{% url 'signup' %}">Don't have an account?</a>
+		</li>
 	</ul>
 	<input type="hidden" name="next" value="{{ next }}">
 </form>
