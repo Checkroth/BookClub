@@ -136,7 +136,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     str(BASE_DIR / 'static'),
 ]
-STATIC_ROOT = str(BASE_DIR / '_static')
+STATIC_ROOT = str(BASE_DIR / 'staticfiles')
 
 
 # Auth settings
