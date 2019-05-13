@@ -7,7 +7,8 @@ Intended as a replacement for returning actual model instsances to templates,
 from dataclasses import dataclass
 
 
-def book_data_from_book(book, num_readers: int):
+def book_data_from_book(book,
+                        num_readers: int):
     return BookData(pk=book.pk,
                     name=book.name,
                     link=book.link,
@@ -26,10 +27,10 @@ class BookData:
 
 def progress_data_from_progress(progress):
     return ProgressData(username=progress.user.username,
-                        pages_read=progress.pages_read)
+                        percent_progress=progress.percent_progress)
 
 
 @dataclass
 class ProgressData:
     username: str
-    pages_read: int
+    percent_progress: int

@@ -39,7 +39,7 @@ class BookApplication:
         return sorted(books, key=lambda book: -book.num_readers)
 
     def get_all_progresses(self, book_id: int) -> Iterator[ProgressData]:
-        all_progresses = self.book_progress_repo.get_all_progresses_by_pages_read(
+        all_progresses = self.book_progress_repo.get_all_progresses_by_progress(
             book_id)
         for progress in all_progresses:
             yield progress_data_from_progress(progress)

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core import validators
 
 
 class Book(models.Model):
@@ -15,8 +16,10 @@ class BookProgress(models.Model):
     book = models.ForeignKey(Book,
                              on_delete=models.CASCADE,
                              related_name='user_progresses')
-    pages_read = models.PositiveIntegerField("Pages read",
-                                             default=0)
+    percent_progress = models.PositiveIntegerField(
+        "Progress",
+        default=0,
+        validators=[validators.MaxValueValidator(100)])
 
     class Meta:
         unique_together = (('user', 'book'))

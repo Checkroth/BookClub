@@ -1,5 +1,5 @@
 from typing import Iterator, Optional
-from django.db.models import Count
+from django.db.models import Count, Q
 
 from .models import Book, BookProgress
 
@@ -37,9 +37,9 @@ class BookProgressRepository:
                  model_book_progress=BookProgress):
         self.model_book_progress = model_book_progress
 
-    def get_all_progresses_by_pages_read(self, book_id):
+    def get_all_progresses_by_progress(self, book_id):
         progresses = self.model_book_progress.objects.filter(book_id=book_id)
-        progresses = progresses.order_by('-pages_read')
+        progresses = progresses.order_by('-percent_progress')
         progresses.prefetch_related('user')
         return progresses
 
@@ -49,3 +49,11 @@ class BookProgressRepository:
                                                         book_id=book_id)
         except self.model_book_progress.DoesNotExist:
             return None
+
+    def get_current_readers(self, book_id):
+        qs = self.model_book_progress.objects.filter(book_id=book_id)
+        return qs.filter(pages_read__lte=Q('book__page_count'))
+
+    def get_finished_readers(self, book_id):
+        qs = self.model_book_progress.objects.filter(book_id=book_id)
+        return qs.filter(pages_read=Q('book__page_count'))

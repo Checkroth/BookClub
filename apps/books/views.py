@@ -17,16 +17,18 @@ def view_book(request, pk):
     existing_progress = progress_repo.get_existing_progress(user_id=request.user.pk,
                                                             book_id=pk)
     if request.method == 'POST':
-        progress_form = BookProgressForm({'user': request.user.pk,
-                                          'book': pk,
-                                          'pages_read': request.POST['pages_read']},
-                                         instance=existing_progress,
-                                         )
+        progress_form = BookProgressForm(
+            {'user': request.user.pk,
+             'book': pk,
+             'percent_progress': request.POST['percent_progress']},
+            instance=existing_progress,
+        )
         if progress_form.is_valid():
             progress_form.save()
     else:
         progress_form = BookProgressForm(
-            {'pages_read': existing_progress.pages_read if existing_progress else 0})
+            {'percent_progress': existing_progress.percent_progress
+             if existing_progress else 0})
 
     readers = book_app.get_all_progresses(pk)
     return render(request, 'book.html', {'book': book,
