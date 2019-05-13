@@ -8,12 +8,14 @@ from dataclasses import dataclass
 
 
 def book_data_from_book(book,
-                        num_readers: int):
+                        current_readers: int,
+                        finished_readers: int):
     return BookData(pk=book.pk,
                     name=book.name,
                     link=book.link,
                     page_count=book.page_count,
-                    num_readers=num_readers)
+                    current_readers=current_readers,
+                    finished_readers=finished_readers)
 
 
 @dataclass
@@ -22,7 +24,8 @@ class BookData:
     name: str
     link: str
     page_count: int
-    num_readers: int
+    current_readers: int
+    finished_readers: int
 
 
 def progress_data_from_progress(progress):
